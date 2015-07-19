@@ -24,6 +24,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
         recordingInProgress.text = "Tap to Record"
         stopButton.hidden = true
         recordButton.enabled = true
@@ -60,8 +61,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         
         if(flag) {
-        recordedAudio = RecordedAudio(url: recorder.url, title: recorder.url.lastPathComponent!)
-        performSegueWithIdentifier("stopRecordingSegue", sender: recordedAudio)
+            recordedAudio = RecordedAudio(url: recorder.url, title: recorder.url.lastPathComponent!)
+            performSegueWithIdentifier("stopRecordingSegue", sender: recordedAudio)
         } else {
             println("Recording Audio Failed")
             recordButton.enabled = true

@@ -19,34 +19,31 @@ class AudioEffectsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-            player = AVAudioPlayer(contentsOfURL: recievedAudio.filePathUrl, error: nil)
-            player.prepareToPlay()
-            player.enableRate = true
-            
-            audioEngine = AVAudioEngine()
-            audioFile = AVAudioFile(forReading: recievedAudio.filePathUrl, error: nil)
 
-        // Do any additional setup after loading the view.
+        player = AVAudioPlayer(contentsOfURL: recievedAudio.filePathUrl, error: nil)
+        player.prepareToPlay()
+        player.enableRate = true
+        
+        audioEngine = AVAudioEngine()
+        audioFile = AVAudioFile(forReading: recievedAudio.filePathUrl, error: nil)
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func onChipmunkAudioButtonPressed(sender: UIButton) {
        playAudioWithVariablePitch(1000)
     }
+    
     @IBAction func onDarthVaderAudioButtonPressed(sender: UIButton) {
         playAudioWithVariablePitch(-1000)
     }
     
     func playAudioWithVariablePitch(pitch: Float){
-        player.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAll()
         
         var audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
@@ -65,9 +62,7 @@ class AudioEffectsViewController: UIViewController {
     }
     
     func playAudioWithVariableRate(rate: Float){
-        player.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAll()
         
         player.rate = rate
         player.play()
@@ -88,7 +83,13 @@ class AudioEffectsViewController: UIViewController {
         player.stop()
         audioEngine.stop()
         audioEngine.reset()
-
+    }
+    
+    func stopAll() {
+        player.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        player.currentTime = 0.0
     }
     
 
