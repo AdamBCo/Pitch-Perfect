@@ -21,18 +21,13 @@ class PlaySoundsViewController: UIViewController {
         super.viewDidLoad()
         
         
-        if var path = recievedAudio.filePathUrl {
-            
-            player = AVAudioPlayer(contentsOfURL: path, error: nil)
+        
+            player = AVAudioPlayer(contentsOfURL: recievedAudio.filePathUrl, error: nil)
             player.prepareToPlay()
             player.enableRate = true
             
             audioEngine = AVAudioEngine()
-            audioFile = AVAudioFile(forReading: path, error: nil)
-            
-        } else {
-            println("No file was located")
-        }
+            audioFile = AVAudioFile(forReading: recievedAudio.filePathUrl, error: nil)
 
         // Do any additional setup after loading the view.
     }
