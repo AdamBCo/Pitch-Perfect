@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class PlaySoundsViewController: UIViewController {
+class AudioEffectsViewController: UIViewController {
 
     var player: AVAudioPlayer = AVAudioPlayer()
     
@@ -63,20 +63,32 @@ class PlaySoundsViewController: UIViewController {
         
         audioPlayerNode.play()
     }
+    
+    func playAudioWithVariableRate(rate: Float){
+        player.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        player.rate = rate
+        player.play()
+        
+    }
 
     @IBAction func playSlowSound(sender: UIButton) {
-            player.rate = 0.25
-            player.play()
+        
+        playAudioWithVariableRate(0.25)
     }
 
     @IBAction func playFastAudio(sender: AnyObject) {
-        player.rate = 2
-        player.play()
+        playAudioWithVariableRate(2.0)
+ 
     }
 
     @IBAction func stopAudio(sender: AnyObject) {
-        player.pause()
-        audioEngine.pause()
+        player.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+
     }
     
 

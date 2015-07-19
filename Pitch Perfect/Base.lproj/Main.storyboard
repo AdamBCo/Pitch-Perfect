@@ -26,8 +26,8 @@
                                     <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a6h-Ac-aHP"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCD-qv-3WH">
-                                <rect key="frame" x="262" y="358" width="79" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCD-qv-3WH">
+                                <rect key="frame" x="247" y="358" width="108" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -64,10 +64,10 @@
             </objects>
             <point key="canvasLocation" x="847" y="-378"/>
         </scene>
-        <!--Play Sounds View Controller-->
+        <!--Audio Effects View Controller-->
         <scene sceneID="5Xa-NY-2ri">
             <objects>
-                <viewController id="qWC-cx-2LG" customClass="PlaySoundsViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qWC-cx-2LG" customClass="AudioEffectsViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iI2-gX-FSo"/>
                         <viewControllerLayoutGuide type="bottom" id="0mb-sH-5YZ"/>

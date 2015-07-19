@@ -24,6 +24,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
+        recordingInProgress.text = "Tap to Record"
         stopButton.hidden = true
         recordButton.enabled = true
     }
@@ -34,8 +35,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @IBAction func recordAudio(sender: UIButton) {
-        
-        recordingInProgress.hidden = false
+        recordingInProgress.text = "Recording In Progress"
         stopButton.hidden = false
         recordButton.enabled = false
         
@@ -60,10 +60,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         
         if(flag) {
-        recordedAudio = RecordedAudio()
-        recordedAudio.filePathUrl = recorder.url
-        recordedAudio.title = recorder.url.lastPathComponent
-        
+        recordedAudio = RecordedAudio(url: recorder.url, title: recorder.url.lastPathComponent!)
         performSegueWithIdentifier("stopRecordingSegue", sender: recordedAudio)
         } else {
             println("Recording Audio Failed")
@@ -75,15 +72,14 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "stopRecordingSegue") {
-            let playSoundsViewController:PlaySoundsViewController = segue.destinationViewController as! PlaySoundsViewController
+            let destinationViewController:AudioEffectsViewController = segue.destinationViewController as! AudioEffectsViewController
             let data = sender as! RecordedAudio
-            playSoundsViewController.recievedAudio = data
+            destinationViewController.recievedAudio = data
         }
     }
     
     @IBAction func stopAudio(sender: UIButton) {
         audioRecorder.stop()
-        recordingInProgress.hidden = true
         var audioSession = AVAudioSession.sharedInstance()
         audioSession.setActive(false, error: nil)
 
